@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.bless.core.BlessSprite"/>
+    <classEntry path="com.bless.core.UIComponent"/>
+    <classEntry path="com.bless.controls.Image"/>
+    <classEntry path="com.bless.events.ImageEvent"/>
+    <classEntry path="com.bless.core.Application"/>
+    <classEntry path="com.bless.core.ApplicationGlobals"/>
+    <classEntry path="com.bless.core.CallLater"/>
+    <classEntry path="com.bless.managers.OverlayRenderManager"/>
+    <classEntry path="com.bless.managers.ValidateManager"/>
+    <classEntry path="com.bless.containers.Group"/>
+    <classEntry path="com.bless.containers.HGroup"/>
+    <classEntry path="com.bless.core.Container"/>
+    <classEntry path="com.bless.containers.layouts.BaseLayout"/>
+    <classEntry path="com.bless.containers.layouts.HorizontalLayout"/>
+    <classEntry path="com.bless.containers.layouts.ILayout"/>
+    <classEntry path="com.bless.containers.VGroup"/>
+    <classEntry path="com.bless.containers.layouts.VerticalLayout"/>
+    <classEntry path="com.bless.containers.TileGroup"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>

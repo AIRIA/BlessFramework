@@ -1,0 +1,58 @@
+//////////////////////////////////////////////
+//
+//BlessFramework
+//Copyright 2012 
+//Author:BlessMan QQ:506896470 
+//E-mail:chaibingcheng0305@163.com
+//
+//////////////////////////////////////////////
+package com.bless.containers.layouts
+{
+	import com.bless.core.Container;
+	import com.bless.core.UIComponent;
+
+	/**
+	 *
+	 *水平布局类
+	 */
+	public class HorizontalLayout extends BaseLayout
+	{
+		public function HorizontalLayout(target:Container)
+		{
+			super(target);
+		}
+		
+		override public function measure():void
+		{
+			var numChildren:int = target.numChildren;
+			for(var i:int=0;i<numChildren;i++){
+				var child:UIComponent;
+				if(target.getChildAt(i) is UIComponent){
+					child = UIComponent(target.getChildAt(i))
+					if(!child.explicitOrMeasuredHeight){
+						return;
+					}
+					child.horizontalCenter = NaN;
+					child.verticalCenter = NaN;
+					if(i==0){
+						child.x = target.padding;
+					}else{
+						child.x = target.contentWidth + target.horizontalGap;
+					}
+					child.y = target.padding;
+					target.contentWidth = child.x + child.explicitOrMeasuredWidth;
+				}
+				if(target.childMaxHeight<child.explicitOrMeasuredHeight){
+					target.childMaxHeight = child.explicitOrMeasuredHeight+target.padding*2;
+				}
+			}
+			target.contentWidth += target.padding;
+//			target.measuredWidth = target.contentWidth;
+		}
+		
+		override public function layout():void
+		{
+			
+		}
+	}
+}
