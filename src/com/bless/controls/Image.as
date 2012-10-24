@@ -20,7 +20,7 @@ package com.bless.controls
 	import flash.net.URLRequest;
 	
 	/**
-	 *
+	 * Image 控件允许您在运行时导入 JPEG、PNG、GIF 
 	 *
 	 */
 	public class Image extends UIComponent
@@ -36,6 +36,11 @@ package com.bless.controls
 			trace("new image");
 		}
 		
+		/**
+		 * 设置图片的url地址 
+		 * @param value
+		 * 
+		 */		
 		public function set source(value:String):void
 		{
 			if(!imageUrlReq){
@@ -56,7 +61,10 @@ package com.bless.controls
 				}
 			}
 		}
-		
+		/**
+		 * 释放图片资源 
+		 * 
+		 */		
 		public function dispose():void
 		{
 			imageLoader.contentLoaderInfo.removeEventListener(Event.COMPLETE,completeHandler);
@@ -80,6 +88,8 @@ package com.bless.controls
 		protected function completeHandler(event:Event):void
 		{
 			addChild(imageLoader.content);
+			measuredWidth = imageLoader.content.width;
+			measuredHeight = imageLoader.content.height;
 			imageLoader.content.width = explicitWidth;
 			imageLoader.content.height = explicitHeight;
 			invalidateSize();
