@@ -16,7 +16,6 @@ package com.bless.containers
 	 */
 	public class VGroup extends Group
 	{
-		private var _childMaxWidth:Number = 0;
 		public function VGroup()
 		{
 			super();
@@ -30,7 +29,7 @@ package com.bless.containers
 		override public function set childMaxWidth(value:Number):void
 		{
 			if(childMaxWidth!=value){
-				_childMaxWidth = value;
+				super.childMaxWidth = value;
 				contentWidth = value;
 			}
 		}

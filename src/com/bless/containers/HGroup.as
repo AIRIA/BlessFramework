@@ -15,7 +15,6 @@ package com.bless.containers
 	 */
 	public class HGroup extends Group
 	{
-		private var _childMaxHeight:Number = 0;
 		/**
 		 *构造方法 
 		 * 
@@ -31,8 +30,8 @@ package com.bless.containers
 		 */		
 		override public function set childMaxHeight(value:Number):void
 		{
-			if(_childMaxHeight!=value){
-				_childMaxHeight = value;
+			if(childMaxHeight!=value){
+				super.childMaxHeight = value;
 				contentHeight = value;
 			}
 		}

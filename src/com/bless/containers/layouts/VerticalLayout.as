@@ -27,7 +27,7 @@ package com.bless.containers.layouts
 			var numChildren:Number = target.numChildren;
 			for(var i:int=0;i<numChildren;i++){
 				var child:UIComponent = target.getChildAt(i) as UIComponent;
-				if(child&&child.explicitOrMeasuredHeight){
+				if(child&&!isNaN(child.explicitOrMeasuredHeight)){
 					if(i==0){
 						//第一个组件只有padding填充 后面的组件是当前的高度加上行间距
 						child.y = target.padding;

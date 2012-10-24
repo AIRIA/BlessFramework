@@ -34,8 +34,6 @@ package com.bless.containers.layouts
 					if(!child.explicitOrMeasuredHeight){
 						return;
 					}
-					//在该布局中 使horizontalCenter verticalCenter失效
-					child.disabledHVCenter();
 					if(i==0){
 						child.x = target.padding;
 					}else{
