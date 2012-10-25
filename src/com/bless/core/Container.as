@@ -44,34 +44,128 @@ package com.bless.core
 		private var _childMaxWidth:Number = 0;
 		private var _childMinWidth:Number = 0;
 		
+		private var _backgroundColor:uint;
+		private var _cornerRadius:Number = 0.0;
+		private var _backgroundAlpha:Number = 1;
+		private var _borderWeight:Number = 1;
+		private var _borderColor:uint;
+		
+		/**
+		 * 容器的背景颜色 
+		 * @return 
+		 * 
+		 */		
+		public function get backgroundColor():uint
+		{
+			return _backgroundColor;
+		}
+		public function set backgroundColor(value:uint):void
+		{
+			if(_backgroundColor!=value){
+				_backgroundColor = value;
+				invalidateProperties();
+				invalidateDisplayList();
+			}
+		}
+		/**
+		 * 容器的背景圆角半径 
+		 * @return 
+		 * 
+		 */		
+		public function get cornerRadius():Number
+		{
+			return _cornerRadius;
+		}
+		
+		public function set cornerRadius(value:Number):void
+		{
+			if(_cornerRadius!=value){
+				_cornerRadius = value;
+				invalidateProperties();
+				invalidateDisplayList();
+			}
+		}
+		/**
+		 * 容器背景的透明度 
+		 * @return 
+		 * 
+		 */		
+		public function get backgroundAlpha():Number
+		{
+			return _backgroundAlpha;
+		}
+		
+		public function set backgroundAlpha(value:Number):void
+		{
+			if(_backgroundAlpha!=value){
+				_backgroundAlpha = value;
+				invalidateProperties();
+				invalidateDisplayList();
+			}
+		}
+		/**
+		 * 容器的边框粗细
+		 * @return 
+		 * 
+		 */		
+		public function get borderWeight():Number
+		{
+			return _borderWeight;	
+		}
+		
+		
+		/**
+		 * 容器的边框颜色 
+		 * @return 
+		 * 
+		 */		
+		public function get borderColor():uint
+		{
+			return _borderColor;
+		}
+		
+		public function set borderWeight(value:Number):void
+		{
+			if(_borderWeight!=value){
+				_borderWeight = value;
+				invalidateProperties();
+				invalidateDisplayList();
+			}
+		}
+		
+		public function set borderColor(value:uint):void
+		{
+			if(_borderColor!=value){
+				_borderColor = value;
+				invalidateProperties();
+				invalidateDisplayList();
+			}
+		}
+		
+		/**
+		 * 绘制背景的方法 
+		 * 
+		 */		
 		public function draw():void
 		{
-			graphics.clear();
-			graphics.beginFill(0x334455,0.5);
-			graphics.drawRect(0,0,explicitOrMeasuredWidth,explicitOrMeasuredHeight);
-			graphics.endFill();
+			if(stage){
+				//只有添加到舞台上后 才进行绘制
+				if(backgroundColor){
+					graphics.clear();
+					if(borderColor){
+						graphics.lineStyle(borderWeight,borderColor);
+					}
+					graphics.beginFill(backgroundColor,backgroundAlpha);
+					graphics.drawRoundRect(0,0,explicitOrMeasuredWidth,explicitOrMeasuredHeight,cornerRadius,cornerRadius);
+					graphics.endFill();
+				}
+			}
 		}
 		
 		override protected function updateDisplayList():void{
 			super.updateDisplayList();
 			draw();
 		}
-		
-//		override public function set height(value:Number):void
-//		{
-//			if(height!=value){
-//				height = value;
-//				draw();
-//			}
-//		}
-//		
-//		override public function set width(value:Number):void
-//		{
-//			if(width!=value){
-//				width = value;
-//				draw();
-//			}
-//		}
 		
 		public function set layout(value:BaseLayout):void
 		{
@@ -179,11 +273,6 @@ package com.bless.core
 		override public function get explicitOrMeasuredWidth():Number
 		{
 			return isNaN(explicitWidth)?contentWidth:explicitWidth;	
-		}
-		
-		override public function addChild(child:DisplayObject):DisplayObject
-		{
-			return super.addChild(child);
 		}
 		
 		public function set contentWidth(value:Number):void
