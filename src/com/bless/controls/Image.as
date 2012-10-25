@@ -36,8 +36,13 @@ package com.bless.controls
 			trace("new image");
 		}
 		
+		public function get source():String
+		{
+			return _source;
+		}
+		
 		/**
-		 * 设置图片的url地址 
+		 * 图片的url地址 
 		 * @param value
 		 * 
 		 */		
@@ -57,8 +62,8 @@ package com.bless.controls
 					if(contains(imageLoader.content)){
 						removeChild(imageLoader.content);
 					}
-					createChildren();
 				}
+				createChildren();
 			}
 		}
 		/**
@@ -124,7 +129,9 @@ package com.bless.controls
 		 */		
 		public function load():void
 		{
-			imageLoader.load(imageUrlReq);
+			if(source){
+				imageLoader.load(imageUrlReq);
+			}
 		}
 	}
 }
