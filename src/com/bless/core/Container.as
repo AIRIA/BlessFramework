@@ -50,6 +50,40 @@ package com.bless.core
 		private var _borderWeight:Number = 1;
 		private var _borderColor:uint;
 		
+		private var _verticalAlign:String;
+		private var _horizontalAlign:String;
+		
+		/**
+		 * 水平对齐方式 
+		 * @return 
+		 * 
+		 */		
+		public function get verticalAlign():String
+		{
+			return _verticalAlign;
+		}
+		/**
+		 * 垂直对齐方式 
+		 * @return 
+		 * 
+		 */		
+		public function get horizontalAlign():String{
+			return _horizontalAlign;
+		}
+		
+		public function set veticalAlign(value:String):void
+		{
+			if(_verticalAlign!=value){
+				_verticalAlign =value;
+			}
+		}
+		
+		public function set horizontalAlign(value:String):void
+		{
+			if(_horizontalAlign!=value){
+				_horizontalAlign = value;
+			}
+		}
 		/**
 		 * 容器的背景颜色 
 		 * @return 
