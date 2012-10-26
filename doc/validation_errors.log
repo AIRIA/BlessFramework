@@ -1,0 +1,3 @@
+Text for description in com.bless.containers.layouts:HorizontalLayout is not valid.
+org.xml.sax.SAXParseException: 元素类型“p”必须以匹配的结束标签“</p>”结束。
+
