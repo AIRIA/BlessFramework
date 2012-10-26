@@ -13,7 +13,7 @@ package com.bless.containers.layouts
 
 	/**
 	 *
-	 * <p>水平布局类<p>
+	 * <p>水平布局类</p>
 	 * <p>在measure方法中 编写布局的逻辑代码</p>
 	 */
 	public class HorizontalLayout extends BaseLayout

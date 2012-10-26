@@ -18,17 +18,16 @@ package com.bless.controls
 	import flash.text.TextLineMetrics;
 	
 	/**
-	 *  
-	 * 
+	 * Button 控件是常用的矩形按钮。Button 控件看起来似乎可以按压。控件表面可以包含文本标签和（或）图标。
 	 */
 	public class Button extends UIComponent
 	{
 		private var _icon:Image;
 		private var _textField:UITextField;
 		private var _label:String;
-		private var _padding:Number = 3;
+		private var _padding:Number = 1;
 		private var _labelStyle:TextFormat;
-		private var _cornerRadius:Number = 4;
+		private var _cornerRadius:Number = 8;
 		
 		/**
 		 * 背景矩形的圆角半径 
@@ -132,6 +131,8 @@ package com.bless.controls
 		public function Button()
 		{
 			super();
+			buttonMode = true;
+			mouseChildren = false;
 		}
 		
 		protected override function commitProperties():void
@@ -140,13 +141,22 @@ package com.bless.controls
 			textField.text = label;
 			var labelWidth:Number = 0;
 			var labelHeight:Number = 0;
+			var iconWidth:Number = 0;
+			var iconHeight:Number = 0;
 			var tlm:TextLineMetrics = textField.getLineMetrics(0);
+			if(icon){
+				iconWidth = icon.explicitOrMeasuredWidth;
+				iconHeight = icon.explicitOrMeasuredHeight;
+			}
 			textField.width = labelWidth = tlm.width+4;
 			textField.height = labelHeight = tlm.height+4;
-			width = textField.width + padding*2;
-			height = textField.height + padding*2;
-			buttonMode = true;
-			textField.mouseEnabled = false;
+			width = textField.width + padding*2+iconWidth;
+			
+			if(textField.height<iconHeight){
+				height = iconHeight+padding*2;
+			}else{
+				height = textField.height + padding*2;
+			}
 		}
 
 		protected override function createChildren():void
@@ -177,7 +187,17 @@ package com.bless.controls
 		{
 			super.updateDisplayList();
 			drawBg();
-			textField.x = width - textField.width >> 1;
+			if(icon){
+				icon.x = padding;
+				icon.y = height - icon.explicitOrMeasuredHeight >> 1;
+				if(!contains(icon)){
+					icon.mouseEnabled = false;
+					addChild(icon);
+				}
+				textField.x = (width - icon.x - icon.explicitOrMeasuredWidth - textField.width >> 1) + icon.x + icon.explicitOrMeasuredWidth;
+			}else{
+				textField.x = width - textField.width >> 1;
+			}
 			textField.y = height - textField.height >> 1;
 		}
 

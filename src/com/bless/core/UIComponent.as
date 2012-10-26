@@ -481,8 +481,8 @@ package com.bless.core
 			trace(this+"validateDisplayList");
 			//更新过后 把失效标识重新赋值为false 标识为未失效
 			if(invalidateDisplayListFlag){
-				updateDisplayList();
 				invalidateDisplayListFlag = false;
+				updateDisplayList();
 			}
 		}
 		/**
