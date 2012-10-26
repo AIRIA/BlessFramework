@@ -54,7 +54,7 @@ package com.bless.controls
 			}
 			if(_source!=value){
 				_source = value;
-				imageUrlReq.url = value;
+				imageUrlReq.url = encodeURI(value);
 				imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,completeHandler);
 				imageLoader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS,progressHandler);
 				imageLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR,ioErrorHandler);

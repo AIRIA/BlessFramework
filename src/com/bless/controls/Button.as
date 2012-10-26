@@ -9,8 +9,10 @@
 package com.bless.controls
 {
 	import com.bless.core.UIComponent;
+	import com.bless.core.UITextField;
 	
 	import flash.text.TextField;
+	import flash.text.TextLineMetrics;
 	
 	/**
 	 * 
@@ -19,11 +21,12 @@ package com.bless.controls
 	public class Button extends UIComponent
 	{
 		private var _icon:Image;
-		private var _textField:TextField;
+		private var _textField:UITextField;
 		private var _label:String;
+		private var _padding:Number = 5;
 		
 		/**
-		 * 文字前的图表 
+		 * 文字前的图标 
 		 * @return 
 		 * 
 		 */		
@@ -36,16 +39,33 @@ package com.bless.controls
 		{
 			_icon = value;
 		}
-
-		public function get textField():TextField
+		
+		public function get textField():UITextField
 		{
 			return _textField;
 		}
 
-		public function set textField(value:TextField):void
+		public function set textField(value:UITextField):void
 		{
 			_textField = value;
 		}
+		
+		/**
+		 * Button边框和文字之间的距离 
+		 * @return 
+		 * 
+		 */		
+		public function get padding():Number
+		{
+			return _padding;
+		}
+
+		public function set padding(value:Number):void
+		{
+			_padding = value;
+		}
+
+		
 		/**
 		 * button上显示的文字 
 		 * @return 
@@ -58,9 +78,13 @@ package com.bless.controls
 
 		public function set label(value:String):void
 		{
-			_label = value;
+			if(_label!=value){
+				_label = value;
+				if(textField){
+					textField.text = label;
+				}
+			}
 		}
-
 		
 		public function Button()
 		{
@@ -69,25 +93,33 @@ package com.bless.controls
 		
 		protected override function commitProperties():void
 		{
-			//TODO Auto-generated method stub
 			super.commitProperties();
+			textField.text = label;
+			var labelWidth:Number = 0;
+			var labelHeight:Number = 0;
+			var tlm:TextLineMetrics = textField.getLineMetrics(0);
+			textField.width = labelWidth = tlm.width;
+			textField.height = labelHeight = tlm.height;
+			width = labelWidth + padding*2;
+			height = labelHeight + padding*2;
 		}
 
 		protected override function createChildren():void
 		{
-			//TODO Auto-generated method stub
 			super.createChildren();
+			if(!textField){
+				textField = new UITextField();
+				addChild(textField);
+			}
 		}
 
 		protected override function measure():void
 		{
-			//TODO Auto-generated method stub
 			super.measure();
 		}
 
 		protected override function updateDisplayList():void
 		{
-			//TODO Auto-generated method stub
 			super.updateDisplayList();
 		}
 

@@ -46,7 +46,7 @@ package com.bless.core
 			if(init!=null){
 				init();				
 			}else{
-				throw new Error("没有重写程序的初始化方法",0);
+//				throw new Error("没有重写程序的初始化方法",0);
 			}
 		}
 	}

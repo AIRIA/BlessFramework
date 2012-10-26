@@ -14,7 +14,7 @@ package com.bless.controls
 	 * LinkButton 控件是没有边框的 Button 控件，当用户将鼠标移动到该控件位置时，其内容将加亮显示。
 	 *
 	 */
-	public class LinkButton extends UIComponent
+	public class LinkButton extends Button
 	{
 		
 		private var _rollOverColor:uint = 0xEEFEE6;

@@ -275,8 +275,6 @@ package com.bless.core
 			}
 			if(_width!=value){
 				_width = value;
-				measure();
-				updateDisplayList();
 			}
 		}
 		/**

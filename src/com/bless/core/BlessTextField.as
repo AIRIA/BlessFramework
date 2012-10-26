@@ -20,5 +20,13 @@ package com.bless.core
 		{
 			super();
 		}
+		
+		
+		public override function toString():String
+		{
+			return super.toString();
+		}
+
+
 	}
 }
