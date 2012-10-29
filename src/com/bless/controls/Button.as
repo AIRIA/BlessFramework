@@ -11,6 +11,7 @@ package com.bless.controls
 	import com.bless.core.UIComponent;
 	import com.bless.core.UITextField;
 	
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
@@ -28,6 +29,25 @@ package com.bless.controls
 		private var _padding:Number = 1;
 		private var _labelStyle:TextFormat;
 		private var _cornerRadius:Number = 8;
+		private var _backgroundAlpha:Number = 1;
+
+		/**
+		 * 当前背景的透明度 
+		 * @return 
+		 * 
+		 */		
+		public function get backgroundAlpha():Number
+		{
+			return _backgroundAlpha;
+		}
+
+		public function set backgroundAlpha(value:Number):void
+		{
+			if(_backgroundAlpha!=value){
+				_backgroundAlpha = value;
+			}
+		}
+
 		
 		/**
 		 * 背景矩形的圆角半径 
@@ -127,12 +147,38 @@ package com.bless.controls
 				}
 			}
 		}
-		
+		/**
+		 * 构造函数 
+		 * 
+		 */		
 		public function Button()
 		{
 			super();
 			buttonMode = true;
 			mouseChildren = false;
+			addEventListener(MouseEvent.MOUSE_OVER,overHandler);
+			addEventListener(MouseEvent.MOUSE_OUT,outHandler);
+			addEventListener(MouseEvent.MOUSE_DOWN,downHandler);
+			addEventListener(MouseEvent.MOUSE_UP,upHandler);
+		}
+		
+		protected function upHandler(event:MouseEvent):void
+		{
+			
+		}
+		
+		protected function downHandler(event:MouseEvent):void
+		{
+			
+		}
+		
+		protected function outHandler(event:MouseEvent):void
+		{
+			
+		}
+		protected function overHandler(event:MouseEvent):void
+		{
+			
 		}
 		
 		protected override function commitProperties():void
@@ -150,7 +196,7 @@ package com.bless.controls
 			}
 			textField.width = labelWidth = tlm.width+4;
 			textField.height = labelHeight = tlm.height+4;
-			width = textField.width + padding*2+iconWidth;
+			width = textField.width + padding*4+iconWidth;
 			
 			if(textField.height<iconHeight){
 				height = iconHeight+padding*2;
@@ -173,7 +219,7 @@ package com.bless.controls
 		protected function drawBg():void
 		{
 			graphics.clear();
-			graphics.beginFill(0x333333,1);
+			graphics.beginFill(0x333333,backgroundAlpha);
 			graphics.drawRoundRect(0,0,width,height,cornerRadius,cornerRadius);
 			graphics.endFill();
 		}
