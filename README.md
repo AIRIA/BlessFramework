@@ -7,3 +7,4 @@ BlessFramework
 
 
 [MyApp](http://blessmonitor.sinaapp.com)
+[MusicPlayer](http://adobe.sinaapp.com)
